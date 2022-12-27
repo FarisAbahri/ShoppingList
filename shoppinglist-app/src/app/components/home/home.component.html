@@ -1,0 +1,35 @@
+<!-- Navigation & Log Out -->
+<nav class="bg-gray-800">
+      <div class="relative flex h-16 items-center justify-between">
+        <button type="button" class="rounded-full p-5 text-gray-400 hover:text-white ml-auto" (click)="logOut()">
+            <img src="../../assets/images/logout.png" width="25px" height="25px">
+        </button>
+      </div>
+</nav>
+
+<!-- Shopping List -->
+<div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
+	<div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+        <div class="mb-4">
+            <h1 class="text-gray-800">Shopping List</h1>
+            <form class="flex mt-4" [formGroup]="itemForm" (ngSubmit)="addItem()">
+                <input formControlName="itemName" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="">
+                <button type="submit" class="flex-no-shrink p-2 border-2 rounded text-teal-500 border-teal-500 hover:text-white hover:bg-teal-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+        <div *ngFor="let item of items">
+            <div class="flex mb-4 ml-1 items-center">
+                <p class="w-full text-grey-darkest">{{ item.name }}</p>
+                <button (click)="deleteItem(item)" class="flex-no-shrink p-2 ml-2 border-2 rounded text-red-500 border-red-500 hover:text-white hover:bg-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                    </svg>                      
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
