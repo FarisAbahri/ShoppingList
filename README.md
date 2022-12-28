@@ -10,7 +10,7 @@ A web application where users can log in and manage their personal shopping list
 4. Open the Spring Boot project - Open the project (with java version 17) and run `ShoppinglistApplication.java`. 
 5. Navigate to http://localhost:4200 - You can now use the application!  
 
-##Users. 
+## Users. 
 username: dev
 password: up 
   
