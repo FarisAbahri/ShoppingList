@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import {catchError} from "rxjs/operators";
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,15 +12,11 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  public user: Observable<User>
   private userSubject: BehaviorSubject<User>;
-
-  usersUrl = "http://localhost:8080/user";
 
 
   constructor(private http: HttpClient, private router: Router) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem("id") || '{}' ));
-    this.user = this.userSubject.asObservable();
    }
 
   /**
@@ -27,7 +24,7 @@ export class UserService {
    * @param user
    */
   public loginUser(user: User): Observable<User> {
-    const url = this.usersUrl + "/login";
+    const url = environment.apiUrl + "/user/login";
     this.http.post<User>(url, user).subscribe(data => {
     });
 

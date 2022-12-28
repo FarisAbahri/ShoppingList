@@ -18,16 +18,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Logs in the user with the provided credentials.
+   */
   public loginUser() {
-    this.userService.loginUser(this.user).subscribe(data => {      
-      console.log(data);
-      sessionStorage.setItem("id", data.id.toString());
-      this.router.navigate(["/home"]);
-    },
-    error => {
-      console.log(error);
-      this.toastr.error(`Please fill in the right username/password.`, 'Credentials invalid');
-    })
+    this.userService.loginUser(this.user).subscribe({
+      next: data => {
+        sessionStorage.setItem("id", data.id.toString());
+        this.router.navigate(["/home"]);
+      },
+      error: err => this.toastr.error(`Please fill in a correct username/password.`, 'Credentials invalid')
+    });
   }
 
 }

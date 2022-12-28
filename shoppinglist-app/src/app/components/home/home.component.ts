@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       return 
     } 
     let item = new Item(itemName);
-    await this.itemService.addItem(item).subscribe(addedItem => {
+    this.itemService.addItem(item).subscribe(addedItem => {
       if (addedItem) {
         this.items.push(addedItem);
         this.toastr.success(`Item with name ${item.name} has been added succesfully!`, 'Item added');
@@ -46,16 +46,13 @@ export class HomeComponent implements OnInit {
   }
 
   public deleteItem(item: Item) {
-    this.itemService.deleteItem(item).subscribe(response => {
-      if (response) {
-        const i = this.items.indexOf(item, 0);
-        if(i > -1) {
-          this.items.splice(i, 1);
-          this.toastr.info(`Item with name ${item.name} has been deleted succesfully!`, 'Item deleted');
-        }
+    this.itemService.deleteItem(item).subscribe(() => {
+      const i = this.items.indexOf(item);
+      if(i >= 0) {
+        this.items.splice(i, 1);
+        this.toastr.info(`Item with name ${item.name} deleted successfully!`, 'Item deleted');
       }
-    })
-    
+    });
   }
 
   public logOut() {

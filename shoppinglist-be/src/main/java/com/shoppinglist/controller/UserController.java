@@ -13,19 +13,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // "user/login"
     @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<User> loginUser(@RequestBody User user) throws Exception {
-        String tempUsername = user.getUsername();
-        String tempPassword = user.getPassword();
+        String username = user.getUsername();
+        String password = user.getPassword();
 
-        User userObj = null;
+        User userObj = userService.findUserByUsernameAndPassword(username, password);
 
-        if (tempUsername != null && tempPassword != null) {
-            userObj = userService.findUserByUsernameAndPassword(tempUsername, tempPassword);
-        }
-        //If user doesn't exist
         if (userObj == null) {
             throw new Exception("Invalid credentials");
         }
