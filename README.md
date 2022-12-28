@@ -11,8 +11,8 @@ A web application where users can log in and manage their personal shopping list
 5. Navigate to http://localhost:4200 - You can now use the application!  
 
 ##Users. 
-username: dev. 
-password: up. 
+username: dev
+password: up 
   
-username: faris. 
+username: faris
 password: abahri  
